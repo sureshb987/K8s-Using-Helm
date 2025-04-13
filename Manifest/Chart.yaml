@@ -1,0 +1,6 @@
+apiVersion: v2
+name: bankapp
+description: BankApp with MySQL, Ingress, HPA using Helm
+type: application
+version: 0.1.0
+appVersion: "1.0"
