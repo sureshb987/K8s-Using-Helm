@@ -30,6 +30,17 @@ hpa:
   maxReplicas: 5
   targetCPUUtilization: 70
 
+  ingressController:
+  name: ingress-nginx-controller
+  namespace: ingress-nginx
+  replicaCount: 2
+  image: k8s.gcr.io/ingress-nginx/controller:v1.1.1
+
+  service:
+    name: ingress-nginx
+    type: LoadBalancer
+
+
 domain: www.sureshapp.co
 tlsSecret: sureshapp-co-tls
 
