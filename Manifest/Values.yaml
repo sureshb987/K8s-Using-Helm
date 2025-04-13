@@ -1,0 +1,36 @@
+namespace: webapps
+
+mysql:
+  image: mysql:8
+  rootPassword: Test@123
+  database: bankappdb
+  resources:
+    requests:
+      memory: "512Mi"
+      cpu: "500m"
+    limits:
+      memory: "1Gi"
+      cpu: "1"
+  pvcSize: 5Gi
+
+bankapp:
+  image: suresh3/bankapp:v13
+  replicas: 1
+  resources:
+    requests:
+      memory: "256Mi"
+      cpu: "250m"
+    limits:
+      memory: "512Mi"
+      cpu: "500m"
+
+hpa:
+  enabled: true
+  minReplicas: 1
+  maxReplicas: 5
+  targetCPUUtilization: 70
+
+domain: www.sureshapp.co
+tlsSecret: sureshapp-co-tls
+
+email: bsuresh5453@gmail.com
