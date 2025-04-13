@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.ingressController.name }}
+  namespace: {{ .Values.ingressController.namespace }}
+  labels:
+    app: ingress-nginx
+spec:
+  replicas: {{ .Values.ingressController.replicaCount }}
+  selector:
+    matchLabels:
+      app: ingress-nginx
+  template:
+    metadata:
+      labels:
+        app: ingress-nginx
+    spec:
+      containers:
+        - name: controller
+          image: {{ .Values.ingressController.image }}
+          args:
+            - /nginx-ingress-controller
+          ports:
+            - name: http
+              containerPort: 80
+            - name: https
+              containerPort: 443
