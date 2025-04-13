@@ -39,6 +39,16 @@ hpa:
   service:
     name: ingress-nginx
     type: LoadBalancer
+global:
+  namespace: bank-app
+
+storageClass:
+  name: standard
+  provisioner: kubernetes.io/aws-ebs
+  parameters:
+    type: gp2
+  reclaimPolicy: Retain
+  volumeBindingMode: WaitForFirstConsumer
 
 
 domain: www.sureshapp.co
